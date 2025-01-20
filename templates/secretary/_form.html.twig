@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ formTitle }}{% endblock %}
+
+{% block body %}
+    <h1>{{ formTitle }}</h1>
+    <div class="card p-4">
+        {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.name) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.email) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.phoneNumber) }}
+            {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.phoneNumber) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(form.assignedTasks) }}
+            {{ form_widget(form.assignedTasks, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.assignedTasks) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{ path('app_secretary_index') }}" class="btn btn-secondary">Cancel</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

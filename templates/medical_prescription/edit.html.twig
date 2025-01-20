@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MedicalPrescription{% endblock %}
+
+{% block body %}
+    <h1>Edit MedicalPrescription</h1>
+
+    {{ include('medical_prescription/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_medical_prescription_index') }}">back to list</a>
+
+    {{ include('medical_prescription/_delete_form.html.twig') }}
+{% endblock %}

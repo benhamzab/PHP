@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Secretaries{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">Manage Secretaries</h1>
+    <a href="{{ path('app_secretary_new') }}" class="btn btn-success mb-3">Add New Secretary</a>
+
+    {% if secretaries is defined and secretaries is not empty %}
+        <table class="table table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Assigned Tasks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for secretary in secretaries %}
+                    <tr>
+                        <td>{{ secretary.name }}</td>
+                        <td>{{ secretary.email }}</td>
+                        <td>{{ secretary.phoneNumber }}</td>
+                        <td>{{ secretary.assignedTasks }}</td>
+                        <td>
+                            <a href="{{ path('app_secretary_edit', { id: secretary.id }) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form method="post" action="{{ path('app_secretary_delete', { id: secretary.id }) }}" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ secretary.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No secretaries found.</p>
+    {% endif %}
+{% endblock %}

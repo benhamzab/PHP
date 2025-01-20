@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Secretaries{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">Manage Secretaries</h1>
+    <a href="{{ path('app_secretary_new') }}" class="btn btn-success mb-3">Add New Secretary</a>
+    <table class="table table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Assigned Tasks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for secretary in secretaries %}
+                <tr>
+                    <td>{{ secretary.name }}</td>
+                    <td>{{ secretary.email }}</td>
+                    <td>{{ secretary.phoneNumber }}</td>
+                    <td>{{ secretary.assignedTasks }}</td>
+                    <td>
+                        <a href="{{ path('app_secretary_edit', { id: secretary.id }) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ path('app_secretary_delete', { id: secretary.id }) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
