@@ -1,22 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Material{% endblock %}
+{% block title %}Material Details{% endblock %}
 
 {% block body %}
-    <h1>Material</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Material Details</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ material.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card shadow p-4">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th class="bg-light text-dark">Id</th>
+                    <td>{{ material.id }}</td>
+                </tr>
+                <tr>
+                    <th class="bg-light text-dark">Name</th>
+                    <td>{{ material.name }}</td>
+                </tr>
+                <tr>
+                    <th class="bg-light text-dark">Quantity</th>
+                    <td>{{ material.quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('app_material_index') }}">back to list</a>
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{{ path('app_material_index') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </a>
 
-    <a href="{{ path('app_material_edit', {'id': material.id}) }}">edit</a>
+        <a href="{{ path('app_material_edit', {'id': material.id}) }}" class="btn btn-warning">
+            <i class="fas fa-edit"></i> Edit
+        </a>
 
-    {{ include('material/_delete_form.html.twig') }}
+        {{ include('material/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

@@ -1,13 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MedicalPrescription{% endblock %}
+{% block title %}Edit Medical Prescription{% endblock %}
 
 {% block body %}
-    <h1>Edit MedicalPrescription</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Edit Medical Prescription</h1>
 
-    {{ include('medical_prescription/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="card shadow p-4">
+        <form method="post" class="row g-3">
+            <div class="col-md-6">
+                {{ form_label(form.patientName, 'Patient Name', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.patientName, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.patientName) }}
+            </div>
 
-    <a href="{{ path('app_medical_prescription_index') }}">back to list</a>
+            <div class="col-md-6">
+                {{ form_label(form.reasonForVisit, 'Reason for Visit', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.reasonForVisit, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.reasonForVisit) }}
+            </div>
 
-    {{ include('medical_prescription/_delete_form.html.twig') }}
+            <div class="col-md-6">
+                {{ form_label(form.medicine, 'Medicine', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.medicine, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.medicine) }}
+            </div>
+
+            <div class="col-md-6">
+                {{ form_label(form.nextAppointment, 'Next Appointment', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nextAppointment, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.nextAppointment) }}
+            </div>
+
+            <div class="col-12 d-flex justify-content-between mt-4">
+                <a href="{{ path('app_medical_prescription_index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to List
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Update Prescription
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        {{ include('medical_prescription/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

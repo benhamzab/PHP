@@ -11,8 +11,13 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('default/index.html.twig', [
-            'controller_name' => 'Dentist Back Office',
-        ]);
+        // If the user is logged in, redirect to the secretary page
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_secretary_index');
+        }
+
+        // If the user is not logged in, redirect to login
+        return $this->redirectToRoute('app_login');
     }
 }
+

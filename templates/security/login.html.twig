@@ -1,31 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'security/login_base.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Doctor Login{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h2 class="mb-4">Login</h2>
-
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
+    <div class="login-title">Dentist Back Office</div>
+    
+{% if error %}
+    {% if error.messageKey is defined %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% else %}
+        <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
+{% endif %}
 
-    <form method="post">
+
+    <form action="{{ path('app_login') }}" method="post">
         <div class="mb-3">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input type="email" name="_username" id="inputEmail" class="form-control" required autofocus value="{{ last_username }}">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required autofocus>
         </div>
 
         <div class="mb-3">
-            <label for="inputPassword" class="form-label">Password</label>
-            <input type="password" name="_password" id="inputPassword" class="form-control" required>
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
         </div>
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
-</div>
 {% endblock %}

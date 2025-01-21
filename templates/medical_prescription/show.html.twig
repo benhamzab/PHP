@@ -1,22 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MedicalPrescription{% endblock %}
+{% block title %}Medical Prescription{% endblock %}
 
 {% block body %}
-    <h1>MedicalPrescription</h1>
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Medical Prescription Details</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ medical_prescription.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-bordered table-hover shadow">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ medical_prescription.id }}</td>
+                </tr>
+                <tr>
+                    <th>Patient Name</th>
+                    <td>{{ medical_prescription.patientName }}</td>
+                </tr>
+                <tr>
+                    <th>Reason for Visit</th>
+                    <td>{{ medical_prescription.reasonForVisit }}</td>
+                </tr>
+                <tr>
+                    <th>Medicine</th>
+                    <td>{{ medical_prescription.medicine }}</td>
+                </tr>
+                <tr>
+                    <th>Next Appointment</th>
+                    <td>
+                        {{ medical_prescription.nextAppointment ? medical_prescription.nextAppointment|date('Y-m-d H:i') : 'N/A' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_medical_prescription_index') }}">back to list</a>
+        <div class="mt-4">
+            <a href="{{ path('app_medical_prescription_index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
 
-    <a href="{{ path('app_medical_prescription_edit', {'id': medical_prescription.id}) }}">edit</a>
+            <a href="{{ path('app_medical_prescription_edit', {'id': medical_prescription.id}) }}" class="btn btn-warning">
+                <i class="fas fa-edit"></i> Edit
+            </a>
 
-    {{ include('medical_prescription/_delete_form.html.twig') }}
+            {{ include('medical_prescription/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

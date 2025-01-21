@@ -1,11 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New MedicalPrescription{% endblock %}
+{% block title %}New Medical Prescription{% endblock %}
 
 {% block body %}
-    <h1>Create new MedicalPrescription</h1>
-
-    {{ include('medical_prescription/_form.html.twig') }}
-
-    <a href="{{ path('app_medical_prescription_index') }}">back to list</a>
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Add a New Prescription</h1>
+        <div class="card shadow-lg p-4">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.patientName) }}
+                    {{ form_widget(form.patientName, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.patientName) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.reasonForVisit) }}
+                    {{ form_widget(form.reasonForVisit, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.reasonForVisit) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.medicine) }}
+                    {{ form_widget(form.medicine, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.medicine) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.nextAppointment) }}
+                    {{ form_widget(form.nextAppointment, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.nextAppointment) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            {{ form_end(form) }}
+        </div>
+        <a href="{{ path('app_home') }}" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
 {% endblock %}

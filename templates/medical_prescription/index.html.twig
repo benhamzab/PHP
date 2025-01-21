@@ -1,33 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MedicalPrescription index{% endblock %}
+{% block title %}Medical Prescription Index{% endblock %}
 
 {% block body %}
-    <h1>MedicalPrescription index</h1>
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Medical Prescription List</h1>
 
-    <table class="table">
-        <thead>
+    <table class="table table-bordered table-hover shadow">
+        <thead class="table-dark">
             <tr>
-                <th>Id</th>
-                <th>actions</th>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th>Reason for Visit</th>
+                <th>Medicine</th>
+                <th>Next Rendez-vous</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for medical_prescription in medical_prescriptions %}
             <tr>
                 <td>{{ medical_prescription.id }}</td>
+                <td>{{ medical_prescription.patientName }}</td>
+                <td>{{ medical_prescription.reasonForVisit }}</td>
+                <td>{{ medical_prescription.medicine }}</td>
+                <td>{{ medical_prescription.nextAppointment ? medical_prescription.nextAppointment|date('Y-m-d H:i') : 'N/A' }}</td>
                 <td>
-                    <a href="{{ path('app_medical_prescription_show', {'id': medical_prescription.id}) }}">show</a>
-                    <a href="{{ path('app_medical_prescription_edit', {'id': medical_prescription.id}) }}">edit</a>
+                    <a href="{{ path('app_medical_prescription_show', {'id': medical_prescription.id}) }}" class="btn btn-info btn-sm">
+                        <i class="fas fa-eye"></i> Show
+                    </a>
+                    <a href="{{ path('app_medical_prescription_edit', {'id': medical_prescription.id}) }}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="6" class="text-center text-danger">No records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_medical_prescription_new') }}">Create new</a>
+    <a href="{{ path('app_medical_prescription_new') }}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Create New Prescription
+    </a>
+</div>
 {% endblock %}
